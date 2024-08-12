@@ -1,0 +1,90 @@
+.home-container {
+  text-align: center;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+}
+
+.home-container h2 {
+  color: #333333;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.home-container p {
+  color: #555555;
+  font-size: 18px;
+}
+
+.logout-button {
+  margin-top: 20px;
+  padding: 12px 20px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #d32f2f;
+}
+
+@media (min-width: 1024px) {
+  .home-container {
+    max-width: 600px;
+    padding: 40px;
+  }
+
+  .home-container h2 {
+    font-size: 32px;
+  }
+
+  .home-container input,
+  .home-container button,
+  .logout-button {
+    font-size: 18px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 600px) {
+  .home-container {
+    max-width: 90%;
+    padding: 20px;
+  }
+
+  .home-container h2 {
+    font-size: 24px;
+  }
+
+  .home-container input,
+  .home-container button,
+  .logout-button {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1023px) {
+  .home-container {
+    max-width: 80%;
+    padding: 25px;
+  }
+
+  .home-container h2 {
+    font-size: 28px;
+  }
+
+  .home-container input,
+  .home-container button,
+  .logout-button {
+    font-size: 16px;
+    padding: 12px;
+  }
+}

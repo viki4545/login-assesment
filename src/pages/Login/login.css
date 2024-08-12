@@ -1,0 +1,135 @@
+.login-container {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.login-container h2 {
+  margin-bottom: 20px;
+  color: #333333;
+}
+
+.login-container input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.login-container button {
+  width: 100%;
+  padding: 12px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.login-container button:hover {
+  background-color: #45a049;
+}
+
+.login-.container button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.google-login-button {
+  background-color: #4285f4;
+  color: white;
+}
+
+.google-login-button:hover {
+  background-color: #357ae8;
+}
+
+#recaptcha-container {
+  margin: 20px 0;
+}
+
+.logout-button {
+  margin-top: 20px;
+  padding: 12px 20px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #d32f2f;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+@media (min-width: 1024px) {
+  .login-container {
+    max-width: 600px;
+    padding: 40px;
+  }
+
+  .login-container h2 {
+    font-size: 32px;
+  }
+
+  .login-container input,
+  .login-container button,
+  .logout-button {
+    font-size: 18px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 600px) {
+  .login-container {
+    max-width: 90%;
+    padding: 20px;
+  }
+
+  .login-container h2 {
+    font-size: 24px;
+  }
+
+  .login-container input,
+  .login-container button,
+  .logout-button {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1023px) {
+  .login-container {
+    max-width: 80%;
+    padding: 25px;
+  }
+
+  .login-container h2 {
+    font-size: 28px;
+  }
+
+  .login-container input,
+  .login-container button,
+  .logout-button {
+    font-size: 16px;
+    padding: 12px;
+  }
+}
