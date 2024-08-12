@@ -10,51 +10,38 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
+auth.settings.appVerificationDisabledForTesting = true;
 
 const Login = () => {
   const [phone, setPhone] = useState("");
   const [otp, setOtp] = useState("");
   const [isOtpSent, setIsOtpSent] = useState(false);
-  const [phoneError, setPhoneError] = useState("");
-  const [otpError, setOtpError] = useState("");
 
   useEffect(() => {
-    window.recaptchaVerifier = new RecaptchaVerifier(
-      auth,
-      "recaptcha-container",
-      {
-        size: "invisible",
-        callback: (response) => {
-          sendOtp();
-        },
-      }
-    );
+    if (!window.recaptchaVerifier) {
+      window.recaptchaVerifier = new RecaptchaVerifier(
+        auth,
+        "recaptcha-container",
+        {
+          size: "invisible",
+          callback: (response) => {
+            console.log("reCAPTCHA verified", response);
+          },
+          "expired-callback": () => {
+            toast.error("reCAPTCHA expired, please try again.");
+          },
+        }
+      );
+
+      window.recaptchaVerifier.render().catch((error) => {
+        console.error("reCAPTCHA render error:", error);
+      });
+    }
   }, []);
 
-  const validatePhone = () => {
-    const phoneRegex = /^\d{10}$/;
-    if (!phone.match(phoneRegex)) {
-      setPhoneError("Please enter a valid phone number.");
-      return false;
-    }
-    setPhoneError("");
-    return true;
-  };
-
-  const validateOtp = () => {
-    const otpRegex = /^\d{6}$/;
-    if (!otp.match(otpRegex)) {
-      setOtpError("Please enter a valid 6-digit OTP.");
-      return false;
-    }
-    setOtpError("");
-    return true;
-  };
-
   const sendOtp = () => {
-    // if (!validatePhone()) return;
-    const phonNum = "+91" + phone;
     const appVerifier = window.recaptchaVerifier;
+    const phonNum = "+91" + phone;
     signInWithPhoneNumber(auth, phonNum, appVerifier)
       .then((confirmationResult) => {
         window.confirmationResult = confirmationResult;
@@ -67,8 +54,6 @@ const Login = () => {
   };
 
   const verifyOtp = () => {
-    if (!validateOtp()) return;
-
     const confirmationResult = window.confirmationResult;
     confirmationResult
       .confirm(otp)
@@ -117,7 +102,6 @@ const Login = () => {
         placeholder="Enter phone number"
         disabled={isOtpSent}
       />
-      {phoneError && <p className="error-message">{phoneError}</p>}
       {isOtpSent && (
         <>
           <input
@@ -126,7 +110,6 @@ const Login = () => {
             onChange={(e) => setOtp(e.target.value)}
             placeholder="Enter OTP"
           />
-          {otpError && <p className="error-message">{otpError}</p>}
         </>
       )}
       {!isOtpSent ? (
